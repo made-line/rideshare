@@ -61,8 +61,8 @@ xdescribe "Driver class" do
         id: 8,
         driver: @driver,
         passenger: pass,
-        start_time: "2016-08-08",
-        end_time: "2018-08-09",
+        start_time: Time.new(2016, 8, 8),
+        end_time: Time.new(2018, 8, 9),
         rating: 5
       )
     end
@@ -89,8 +89,8 @@ xdescribe "Driver class" do
         id: 8,
         driver: @driver,
         passenger_id: 3,
-        start_time: "2016-08-08",
-        end_time: "2016-08-08",
+        start_time: Time.new(2016, 8, 8),
+        end_time: Time.new(2016, 8, 8),
         rating: 5
       )
       @driver.add_trip(trip)
@@ -120,8 +120,8 @@ xdescribe "Driver class" do
         id: 8,
         driver: @driver,
         passenger_id: 3,
-        start_time: "2016-08-08",
-        end_time: "2016-08-09",
+        start_time: Time.new(2016, 8, 8),
+        end_time: Time.new(2016, 8, 9),
         rating: 1
       )
       @driver.add_trip(trip2)
