@@ -145,7 +145,7 @@ The purpose of Wave 1 is to help you become familiar with the existing code, and
 
 #### 1.1: Upgrading Times
 
-Currently our implementation saves the start and end time of each trip as a string. This is our first target for improvement. Instead of storing these values as strings, we will use [Ruby's built-in `Time` class](https://ruby-doc.org/core-2.5.1/Time.html). You should:
+Currently our implementation saves the start and end time of each trip as a string. This is our first target for improvement. Instead of storing these values as strings, we will use [Ruby's built-in `Time` class](https://ruby-doc.org/stdlib-2.5.5/libdoc/time/rdoc/Time.html). You should:
 
 1.  Spend some time reading the docs for `Time` - you might be particularly interested in `Time.parse`
 1.  Modify `Trip.from_csv` to turn `start_time` and `end_time` into `Time` instances before passing them to `Trip#initialize`

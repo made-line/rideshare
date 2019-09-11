@@ -27,7 +27,6 @@ describe RideShare::CsvRecord do
 
     it "raises an error if invoked directly (without subclassing)" do
       full_path = "#{TEST_DATA_DIR}/testrecords.csv"
-
       expect {
         RideShare::CsvRecord.load_all(full_path: full_path)
       }.must_raise NotImplementedError
@@ -110,7 +109,6 @@ describe RideShare::CsvRecord do
 
       it 'calls `from_csv` for each record in the file' do
         TestRecord.load_all(directory: TEST_DATA_DIR)
-
         expect(TestRecord.call_count).must_equal record_count
       end
     end
