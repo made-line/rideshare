@@ -3,7 +3,7 @@ require_relative 'test_helper'
 describe "Trip class" do
   describe "initialize" do
     before do
-      start_time = Time.parse('2015-05-20T12:14:00+00:00')
+      start_time = Time.now - 60 * 60 # 60 minutes
       end_time = start_time + 25 * 60 # 25 minutes
       @trip_data = {
         id: 8,
@@ -19,20 +19,20 @@ describe "Trip class" do
       }
       @trip = RideShare::Trip.new(@trip_data)
     end
-    
+
     it "is an instance of Trip" do
       expect(@trip).must_be_kind_of RideShare::Trip
     end
-    
+
     it "stores an instance of passenger" do
       expect(@trip.passenger).must_be_kind_of RideShare::Passenger
     end
-    
+
     it "stores an instance of driver" do
       skip # Unskip after wave 2
       expect(@trip.driver).must_be_kind_of RideShare::Driver
     end
-    
+
     it "raises an error for an invalid rating" do
       [-3, 0, 6].each do |rating|
         @trip_data[:rating] = rating
