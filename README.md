@@ -54,9 +54,11 @@ You should use the following process as much as possible:
 ### Pair Plan
 Come up with a "plan of action" for how you want to work as a pair. Discuss your learning style, how you prefer to receive feedback, and one team communication skill you want to improve with this experience. Second, review the requirements for Wave 1 and come up with a plan for your implementation.
 
-## Setup Requirements
+## Wave 0: Reading Code Requirements
 
 This project comes with a large amount of scaffolding code already written. Before you start writing code, you and your partner should spend some time reading through what's here. Building a strong understanding now will make the rest of the project much smoother.
+
+**Wave 0 takes time. It is entirely reasonable to spend the first day of the project on Wave 0.**
 
 ### Tests
 
