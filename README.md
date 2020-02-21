@@ -9,7 +9,7 @@
 
 Remember the ride share exercise we did with designing and creating a system to track the ride share data from a CSV file? We did a lot of great work on creating arrays and hashes of data, but we've learned a lot since then!
 
-Now, we're going to use our understanding of classes, methods and attributes to create an object-oriented implementation of our ride share system.
+Now, we're going to use our understanding of classes, methods and attributes to create an object-oriented ride share system that is much more robust than our previous implementation.
 
 ## Learning Goals
 
