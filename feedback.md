@@ -12,7 +12,7 @@ The code demonstrates individual learning about `Time` and the responsibility of
 The code demonstrates breaking out complex logic in helper methods, such as making a helper method in `Trip` to calculate duration | ✔️
 There are tests for the nominal cases for the `Passenger#net_expenditures` and `Passenger#total_time_spent` | ✔️
 There is at least one edge case test for either `Passenger#net_expenditures` or `Passenger#total_time_spent` testing if the passenger has no trips | ✔️
-Practices inheritence. `Driver` inherits from `CsvRecord`, and implements `from_csv` | ✔️
+Practices inheritance. `Driver` inherits from `CsvRecord`, and implements `from_csv` | ✔️
 Employs problem-solving and implements `Driver#average_rating` and `Driver#total_revenue` | ✔️
 Implements the `TripDispatcher#request_trip`, which creates an instance of `Trip` with a driver and passenger, adds the new trip to `@trips`, and changes the status of the driver | ✔️
 Practices composition. In `TripDispatcher#request_trip`, the driver gets connected to the new trip, the passenger gets connected to the new trip | ✔️
