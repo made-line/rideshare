@@ -1,10 +1,10 @@
-source 'http://rubygems.org'
+# frozen_string_literal: true
+source "https://rubygems.org"
 
 gem 'rake'
-
-gem 'awesome_print'
-gem 'csv'
-
 gem 'minitest'
+gem 'minitest-spec'
 gem 'minitest-reporters'
+gem "pry"
 gem 'minitest-skip'
+
