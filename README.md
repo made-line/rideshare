@@ -83,7 +83,7 @@ The existing code contains 4 classes:
 - `CsvRecord`
 - `TripDispatcher`
 
-**Before you go any further, think about how these classes might be related.** Draw a diagram, if that will help. Your guess doesn't have to be correct at this stage - making a prediction and then checking it is an important part of the learning process.
+**Before you go any further, think about how these classes might be related.** Draw a diagram, if that will help. Your guess doesn't have to be correct at this stage - making a prediction and then checking it is an important part of the learning process.  You can draw the diagram on paper or use an application such as [app.diagrams.net](https://app.diagrams.net/) which is free although it requires Google Drive.
 
 Now, start reading through the code. There are two equally valid ways to approach this:
 
@@ -109,6 +109,14 @@ $ pry -r ./lib/trip_dispatcher.rb
 => #<RideShare::TripDispatcher:0x3fe91f52950c>
 [2] pry(main)> td.trips.length
 => 600
+```
+
+You could also create your own ruby file, for example `driver.rb` and create instances of the provided classes and experiment with the methods.
+
+```ruby
+td = RideShare::TripDispatcher.new
+puts "Trips length is #{td.trips.length}"
+...
 ```
 
 ### Comprehension Questions
@@ -221,7 +229,7 @@ After each `Trip` has a reference to its `Driver` and `TripDispatcher` can load 
 <summary>Expand for musings on object-oriented design</summary>
 You may notice that `Driver` and `Passenger` share a lot of traits, especially the ability to work with a list of trips. If we were to flesh this library out more, you could imagine having a lot of repeated code. Addressing this problem is an interesting challenge.
 
-One way we could DRY this up is through more inheritance (perhaps a `TripTaker` class), but inheritance is a little heavy-handed for our purposes. A more appropriate technique might be to use a module to include common behavior - this is the topic of POODR chapter 7.
+One way we could DRY this up is through more inheritance (perhaps a `TripTaker` class), but inheritance is a little heavy-handed for our purposes. A more appropriate technique might be to use a module to include common behavior.  This technique is called a [mix-in](https://ruby-doc.com/docs/ProgrammingRuby/html/tut_modules.html) and is something beyound the scope of what we'll learn at Ruby, but an interesting and useful technique.
 
 For right now, we'll just let `Passenger` and `Driver` have some repeated code.
 </details>
