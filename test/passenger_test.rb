@@ -7,6 +7,81 @@ describe "Passenger class" do
       @passenger = RideShare::Passenger.new(id: 1, name: "Smithy", phone_number: "353-533-5334")
     end
 
+    # wave 1 
+    it "calculates net expenditures" do
+      passenger = RideShare::Passenger.new(id: 7, name: "BoJack", phone_number: "2068958734")
+      driver = RideShare::Driver.new(id: 3, name: "Ruby", vin: "12345678912345678", status: :AVAILABLE, trips: [])
+
+      trip_data1 = {
+        id: 8,
+        passenger: passenger,
+        start_time: Time.parse("9:00"),
+        end_time: Time.parse("10:00"),
+        cost: 23.45,
+        rating: 3,
+        driver_id: 10,
+        driver: driver 
+      }
+      trip1 = RideShare::Trip.new(trip_data1)
+      
+      passenger.add_trip(trip1);
+
+      trip_data2 = {
+        id: 9,
+        passenger: passenger,
+        start_time: Time.parse("10:55"),
+        end_time: Time.parse("11:00"),
+        cost: 3.00,
+        rating: 5,
+        driver_id: 10,
+        driver: driver
+      }
+      trip2 = RideShare::Trip.new(trip_data2)
+      
+      passenger.add_trip(trip2);
+
+      expect(passenger.net_expenditures).must_equal 26.45
+    end
+
+
+
+    it "calculates net duration" do
+      passenger = RideShare::Passenger.new(id: 7, name: "BoJack", phone_number: "2068958734")
+      driver = RideShare::Driver.new(id: 3, name: "Ruby", vin: "12345678912345678", status: :AVAILABLE, trips: [])
+      trip_data1 = {
+        id: 8,
+        passenger: passenger,
+        start_time: Time.parse("9:00"),
+        end_time: Time.parse("10:00"),
+        cost: 23.45,
+        rating: 3,
+        driver_id: 2, 
+        driver: driver, 
+      }
+      trip1 = RideShare::Trip.new(trip_data1)
+      
+      passenger.add_trip(trip1);
+
+      trip_data2 = {
+        id: 9,
+        passenger: passenger,
+        start_time: Time.parse("2:55"),
+        end_time: Time.parse("3:00"),
+        cost: 3.00,
+        rating: 5,
+        driver_id: 2, 
+        driver: driver
+      }
+      trip2 = RideShare::Trip.new(trip_data2)
+      
+      passenger.add_trip(trip2);
+
+      expect(passenger.total_time_spent).must_equal 3900
+    end
+
+
+
+
     it "is an instance of Passenger" do
       expect(@passenger).must_be_kind_of RideShare::Passenger
     end
@@ -49,7 +124,10 @@ describe "Passenger class" do
         passenger: @passenger,
         start_time: Time.new(2016, 8, 8),
         end_time: Time.new(2016, 8, 9),
-        rating: 5
+        rating: 5,
+        driver_id: 1,
+        driver: nil
+
         )
 
       @passenger.add_trip(trip)

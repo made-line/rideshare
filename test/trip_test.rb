@@ -41,5 +41,89 @@ describe "Trip class" do
         end.must_raise ArgumentError
       end
     end
+
+
+# wave 1
+
+it "verifies end time is after start time" do 
+  # Arrange
+  start_time = Time.parse("9:00")
+  end_time = Time.parse("10:00")
+
+  trip_data = {
+    id: 8,
+    passenger: RideShare::Passenger.new(
+      id: 1,
+      name: "Ada",
+      phone_number: "412-432-7640"
+    ),
+    start_time: start_time,
+    end_time: end_time,
+    cost: 23.45,
+    rating: 3
+  }
+
+  # Act
+  trip = RideShare::Trip.new(trip_data)
+
+  # Assert
+  # expect(Trip.new(trip_data)).wont_be_nil
+  expect(trip).must_be_instance_of RideShare::Trip
+end 
+
+
+it "raises error if end time is before start time" do 
+  # Arrange
+  start_time = Time.parse("9:00")
+  end_time = Time.parse("8:00")
+  trip_data = {
+    id: 8,
+    passenger: RideShare::Passenger.new(
+      id: 1,
+      name: "Ada",
+      phone_number: "412-432-7640"
+    ),
+    start_time: start_time,
+    end_time: end_time,
+    cost: 23.45,
+    rating: 3
+  }
+
+  # Act & Assert
+  expect do
+    RideShare::Trip.new(trip_data)
+  end.must_raise ArgumentError
+end 
+
+
+it "calculates correct duration" do 
+
+  start_time = Time.parse("2010-10-30")
+  end_time = Time.parse("2010-10-31")
+
+  trip_data = {
+    id: 8,
+    passenger: RideShare::Passenger.new(
+      id: 1,
+      name: "Ada",
+      phone_number: "412-432-7640"
+    ),
+    start_time: start_time,
+    end_time: end_time,
+    cost: 23.45,
+    rating: 3
+  }
+
+  # Act
+  trip = RideShare::Trip.new(trip_data)
+
+  # Assert
+  expect(trip.duration).must_equal 86400.0
+
+end 
+
   end
 end
+
+
+
