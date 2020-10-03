@@ -1,12 +1,12 @@
-require_relative 'test_helper'
+require_relative "test_helper"
 
-TEST_DATA_DIRECTORY = 'test/test_data'
+TEST_DATA_DIRECTORY = "test/test_data"
 
 describe "TripDispatcher class" do
   def build_test_dispatcher
     return RideShare::TripDispatcher.new(
-      directory: TEST_DATA_DIRECTORY
-    )
+             directory: TEST_DATA_DIRECTORY,
+           )
   end
 
   describe "Initializer" do
@@ -28,7 +28,7 @@ describe "TripDispatcher class" do
 
     it "loads the development data by default" do
       # Count lines in the file, subtract 1 for headers
-      trip_count = %x{wc -l 'support/trips.csv'}.split(' ').first.to_i - 1
+      trip_count = %x{wc -l 'support/trips.csv'}.split(" ").first.to_i - 1
 
       dispatcher = RideShare::TripDispatcher.new
 
@@ -43,7 +43,7 @@ describe "TripDispatcher class" do
       end
 
       it "throws an argument error for a bad ID" do
-        expect{ @dispatcher.find_passenger(0) }.must_raise ArgumentError
+        expect { @dispatcher.find_passenger(0) }.must_raise ArgumentError
       end
 
       it "finds a passenger instance" do
@@ -79,7 +79,7 @@ describe "TripDispatcher class" do
   end
 
   # TODO: un-skip for Wave 2
-  xdescribe "drivers" do
+  describe "drivers" do
     describe "find_driver method" do
       before do
         @dispatcher = build_test_dispatcher
@@ -119,6 +119,20 @@ describe "TripDispatcher class" do
           expect(trip.driver.id).must_equal trip.driver_id
           expect(trip.driver.trips).must_include trip
         end
+      end
+    end
+
+    describe "Request trip method" do
+
+      it "raises error when no driver is available" do
+        dispatcher = build_test_dispatcher
+        
+        dispatcher.drivers
+
+        # Act & Assert
+        expect do
+          dispatcher.request_trip(8)
+        end.must_raise ArgumentError
       end
     end
   end

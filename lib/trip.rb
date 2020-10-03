@@ -1,39 +1,37 @@
-require 'csv'
-require 'time'
+require "csv"
+require "time"
 
-require_relative 'csv_record'
+require_relative "csv_record"
 
 module RideShare
   class Trip < CsvRecord
     attr_reader :id, :passenger, :passenger_id, :start_time, :end_time, :cost, :rating, :driver_id, :driver
 
     def initialize(
-          id:,
-          passenger: nil,
-          passenger_id: nil,
-          start_time:,
-          end_time:,
-          cost: nil,
-          rating:,
-          driver_id:,
-          driver: 
-        )
-
+      id:,
+      # provide default values as nil so that both aren't required
+      passenger: nil,
+      passenger_id: nil,
+      start_time:,
+      end_time:,
+      cost: nil,
+      rating:,
+      driver_id: nil,
+      driver: nil
+    )
       super(id)
 
       if end_time < start_time
         raise ArgumentError.new("End time must be after start time")
-        end 
+      end
 
       if passenger
         @passenger = passenger
         @passenger_id = passenger.id
-
       elsif passenger_id
         @passenger_id = passenger_id
-
       else
-        raise ArgumentError, 'Passenger or passenger_id is required'
+        raise ArgumentError, "Passenger or passenger_id is required"
       end
 
       @start_time = start_time
@@ -60,24 +58,22 @@ module RideShare
         "rating=#{rating}>"
     end
 
-    def connect(passenger)
+    def connect(passenger, driver)
       @passenger = passenger
       @driver = driver
       passenger.add_trip(self)
       driver.add_trip(self)
-
     end
 
     def duration
       return @end_time - @start_time
-    end 
+    end
 
     private
 
     def self.from_csv(record)
-
-    start_time = Time.parse(record[:start_time])
-    end_time = Time.parse(record[:end_time])
+      start_time = Time.parse(record[:start_time])
+      end_time = Time.parse(record[:end_time])
 
       return self.new(
                id: record[:id],
@@ -86,8 +82,8 @@ module RideShare
                end_time: end_time,
                cost: record[:cost],
                rating: record[:rating],
-               driver_id: record[:driver_id]
-              # ? driver: record[:driver]
+               driver_id: record[:driver_id],
+               # ? driver: record[:driver]
              )
     end
   end
